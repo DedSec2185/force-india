@@ -73,7 +73,7 @@
   <div class="dock" id="dock">
     <a href="${TEL}" class="btn btn-dark" aria-label="Call Sales Desk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="margin-right:4px"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
     <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn btn-dark" style="color:#22c55e" aria-label="Chat on WhatsApp">WhatsApp</a>
-    <button class="btn btn-primary" data-quote aria-label="Get Quote">Get Quote <span class="arr"></span></button>
+    <button class="btn btn-primary" data-quote aria-label="Get Quote">Get Quote</button>
   </div>
   <div class="cur"></div><div class="cur-ring"><span></span></div>`;
 
@@ -202,14 +202,10 @@
      3. PAGE TRANSITIONS
      ──────────────────────────────────────────────────────────── */
   const wipe = $('#wipe');
+  if (wipe) wipe.style.display = 'none';
   function playEnter() {
-    if (!hasGSAP) { wipe.style.display = 'none'; document.dispatchEvent(new Event('site:ready')); return; }
-    wipe.style.animation = 'none';
-    const tl = gsap.timeline();
-    tl.to('.wipe-bar i', { scaleX: 1, duration: .55, ease: 'power2.inOut' })
-      .to('.wipe-logo', { y: -30, opacity: 0, duration: .4, ease: 'power2.in' }, '+=.05')
-      .to(wipe, { yPercent: -100, duration: .9, ease: 'expo.inOut' }, '-=.15')
-      .add(() => { wipe.style.visibility = 'hidden'; document.dispatchEvent(new Event('site:ready')); }, '-=.45');
+    if (wipe) wipe.style.display = 'none';
+    document.dispatchEvent(new Event('site:ready'));
   }
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
@@ -222,15 +218,8 @@
       if (t) { e.preventDefault(); closeMenu(); scrollTo(t); }
       return;
     }
-    if (!/\.html$|\/$/.test(url.pathname) || !hasGSAP) return;
-    e.preventDefault();
     closeMenu();
-    gsap.set(wipe, { visibility: 'visible', yPercent: 100 });
-    gsap.set('.wipe-logo', { y: 0, opacity: 1 });
-    gsap.set('.wipe-bar i', { scaleX: 0 });
-    gsap.to(wipe, { yPercent: 0, duration: .7, ease: 'expo.inOut', onComplete: () => { location.href = url.href; } });
   });
-  addEventListener('pageshow', e => { if (e.persisted && hasGSAP) { gsap.set(wipe, { yPercent: -100, visibility: 'hidden' }); } });
 
   /* ────────────────────────────────────────────────────────────
      4. HEADER, MENU, DOCK
@@ -355,19 +344,26 @@
   if (hasGSAP && window.ScrollTrigger && !reduce) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Pre-hide intro elements so they can animate in after the wipe
+    const isMobile = window.innerWidth <= 900 || !fine;
     const introSplits = splits.filter(s => s.el.dataset.split === 'intro');
-    introSplits.forEach(s => gsap.set(s.words, { yPercent: 115 }));
-    gsap.set('[data-intro]', { y: 40, opacity: 0 });
-    gsap.set('.trailer-stage img, [data-intro-img]', { x: '35vw', opacity: 0 });
 
-    document.addEventListener('site:ready', () => {
-      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-      introSplits.forEach((s, i) => tl.to(s.words, { yPercent: 0, duration: 1.3, stagger: .06 }, i * .1));
-      tl.to('.trailer-stage img, [data-intro-img]', { x: 0, opacity: 1, duration: 1.8, ease: 'power4.out' }, .1)
-        .to('[data-intro]', { y: 0, opacity: 1, duration: 1.1, stagger: .09 }, .35)
-        .from('.hero-stats .stat', { y: 30, opacity: 0, duration: 1, stagger: .08 }, .6);
-    }, { once: true });
+    if (!isMobile) {
+      introSplits.forEach(s => gsap.set(s.words, { yPercent: 115 }));
+      gsap.set('[data-intro]', { y: 30, opacity: 0 });
+      gsap.set('.trailer-stage img, [data-intro-img]', { x: '20vw', opacity: 0 });
+
+      document.addEventListener('site:ready', () => {
+        const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+        introSplits.forEach((s, i) => tl.to(s.words, { yPercent: 0, duration: 1.1, stagger: .05 }, i * .1));
+        tl.to('.trailer-stage img, [data-intro-img]', { x: 0, opacity: 1, duration: 1.4, ease: 'power4.out' }, .1)
+          .to('[data-intro]', { y: 0, opacity: 1, duration: 0.9, stagger: .08 }, .3)
+          .from('.hero-stats .stat', { y: 20, opacity: 0, duration: 0.8, stagger: .06 }, .5);
+      }, { once: true });
+    } else {
+      introSplits.forEach(s => gsap.set(s.words, { yPercent: 0, opacity: 1 }));
+      gsap.set('[data-intro]', { y: 0, opacity: 1 });
+      gsap.set('.trailer-stage img, [data-intro-img]', { x: 0, opacity: 1 });
+    }
 
     // Scroll-triggered split headings
     splits.filter(s => s.el.dataset.split !== 'intro').forEach(s => {

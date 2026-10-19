@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Proposal & Specification - #PROP-2026-FI-001 - ASVEX Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    background: #ffffff;
+    font-size: 11px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    size: A4;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+  .page {
+    width: 100%;
+    min-height: 275mm;
+    position: relative;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 14px;
+  }
+  .brand-logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0f172a;
+  }
+  .brand-logo span {
+    color: #2563eb;
+  }
+  .brand-sub {
+    font-size: 9px;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 2px;
+  }
+  .doc-title-block {
+    text-align: right;
+  }
+  .proposal-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .doc-ref {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 3px;
+  }
+
+  /* Title Block */
+  .prop-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.3px;
+    margin-bottom: 3px;
+  }
+  .prop-sub {
+    font-size: 10.5px;
+    color: #64748b;
+    margin-bottom: 14px;
+  }
+
+  /* Cards Grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .card-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .card-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .card-desc {
+    font-size: 9.5px;
+    color: #475569;
+    line-height: 1.4;
+  }
+  .card-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Live Status Callout */
+  .status-banner {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+  }
+  .status-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #166534;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .status-desc {
+    font-size: 9.5px;
+    color: #15803d;
+    line-height: 1.45;
+  }
+
+  /* Headings */
+  .section-h2 {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  .p-text {
+    font-size: 10px;
+    color: #334155;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  /* 3 Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .pillar-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .pillar-icon {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .pillar-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+  }
+  .pillar-desc {
+    font-size: 9px;
+    color: #64748b;
+    line-height: 1.35;
+  }
+
+  /* ROI Checkbox Cards */
+  .roi-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .roi-icon {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 800;
+    margin-top: 1px;
+  }
+  .roi-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+  }
+  .roi-desc {
+    font-size: 9.5px;
+    color: #475569;
+    line-height: 1.45;
+  }
+
+  /* Deliverables Table */
+  .scope-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+  }
+  .scope-table th {
+    background: #f1f5f9;
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    text-align: left;
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    padding: 6px 8px;
+  }
+  .scope-table td {
+    padding: 7px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+    font-size: 9.5px;
+  }
+  .scope-table th.tar, .scope-table td.tar {
+    text-align: right;
+  }
+  .scope-title {
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .scope-desc {
+    font-size: 8.5px;
+    color: #64748b;
+    line-height: 1.35;
+  }
+
+  .total-row {
+    background: #f8fafc;
+    font-weight: 800;
+    font-size: 11px;
+    color: #0f172a;
+  }
+  .total-row td {
+    border-top: 1.5px solid #cbd5e1;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .total-row .tar {
+    color: #2563eb;
+    font-size: 12px;
+  }
+
+  /* Payment Details */
+  .pay-instruction {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 9px;
+    color: #166534;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+
+  /* Signatures */
+  .signatures-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .sig-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    padding: 12px 14px;
+  }
+  .sig-header {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 24px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  .sig-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .sig-role {
+    font-size: 9px;
+    color: #64748b;
+    margin-bottom: 6px;
+  }
+  .sig-date {
+    font-size: 9.5px;
+    color: #475569;
+  }
+
+  /* Footer */
+  .doc-footer {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: TITLE, PARTIES, LIVE STATUS & STRATEGIC VISION -->
+<div class="page">
+  <div>
+    <!-- Top Header -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">SOFTWARE DEVELOPMENT & DIGITAL SOLUTIONS</div>
+      </div>
+      <div class="doc-title-block">
+        <div class="proposal-badge">PROJECT PROPOSAL & SPECIFICATION</div>
+        <div class="doc-ref">Date: October 19, 2026<br>Ref: #PROP-2026-FI-001</div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="prop-title">ForceIndia Trailers Digital Growth Platform</div>
+    <div class="prop-sub">Enterprise Web Architecture, Cloud Edge Hosting, Technical Fleet Showcase, and Direct Lead Acquisition</div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid">
+      <!-- Service Provider -->
+      <div class="card">
+        <div class="card-label">SERVICE PROVIDER</div>
+        <div class="card-name">ASVEX Technologies</div>
+        <div class="card-desc">
+          Proprietor: <b>Abhayraj Singh</b><br>
+          Email: abhay@asvextech.com • Phone: +91 98924 69015<br>
+          Location: Mumbai, Maharashtra, India
+        </div>
+      </div>
+      <!-- Prepared For -->
+      <div class="card">
+        <div class="card-label">PREPARED FOR CLIENT</div>
+        <div class="card-name">ForceIndia Trailers</div>
+        <div class="card-desc">
+          Attention: <b>Management & Operations Director</b><br>
+          Live Platform: <a class="card-link" href="https://force-india.vercel.app" target="_blank">force-india.vercel.app</a><br>
+          Location: Maharashtra, India
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Status Banner -->
+    <div class="status-banner">
+      <div class="status-badge">✔ System Development, Cloud Infrastructure & Domain Live</div>
+      <div class="status-desc">
+        The official institutional platform has been custom engineered, deployed onto Vercel's global edge serverless network, and connected with instant WhatsApp direct-calling lead capture channels for immediate transport operator acquisition.
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section-h2">1. Executive Summary & Strategic Vision</div>
+    <div class="p-text">
+      Commercial fleet operators, logistics companies, and freight transport businesses evaluate trailer manufacturers heavily on mobile devices while managing on-ground logistics. A slow, generic, or outdated website creates friction and causes high-value fleet orders to bounce to competitors. ForceIndia produces heavy-duty, high-payload trailers built for extreme Indian road conditions. This platform translates that engineering strength into a 24/7 lead acquisition engine.
+    </div>
+
+    <!-- 3 Pillars Grid -->
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🚛</div>
+        <div class="pillar-title">Pillar 1: Mobile-First Showcase</div>
+        <div class="pillar-desc">
+          Dedicated showcase hubs for Flatbed, Skeletal, and Custom Trailers with sub-second load times and sticky thumb-navigation.
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">⚙️</div>
+        <div class="pillar-title">Pillar 2: 3D Engineering Authority</div>
+        <div class="pillar-desc">
+          Interactive chassis diagnostics, payload stress visualizers, and downloadable engineering PDF spec sheets.
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📲</div>
+        <div class="pillar-title">Pillar 3: Instant Lead Funnel</div>
+        <div class="pillar-desc">
+          1-tap WhatsApp consultation, direct phone dialing, and customized trailer quotation request builder.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 1 Footer -->
+  <div class="doc-footer">
+    <div>Ref: #PROP-2026-FI-001 • Project Proposal • ForceIndia Trailers</div>
+    <div>ASVEX Technologies • Page 1 of 3</div>
+  </div>
+</div>
+
+<!-- PAGE 2: RETURN ON INVESTMENT (ROI) & COMMERCIAL IMPACT -->
+<div class="page">
+  <div>
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">PROJECT PROPOSAL & SPECIFICATION (PAGE 2)</div>
+      </div>
+      <div class="doc-title-block">
+        <div class="doc-ref">Ref: #PROP-2026-FI-001</div>
+      </div>
+    </div>
+
+    <div class="section-h2">2. Return on Investment (ROI) & Commercial Impact</div>
+
+    <!-- ROI Item 1 -->
+    <div class="roi-card">
+      <div class="roi-icon">✔</div>
+      <div>
+        <div class="roi-title">Capture High-Intent Commercial Fleet Searches</div>
+        <div class="roi-desc">
+          When logistics managers, transport contractors, and fleet operators search for heavy-duty flatbed or skeletal semi-trailers, the platform provides an immediate, trustworthy first impression that converts searches into direct sales calls and quotation inquiries.
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI Item 2 -->
+    <div class="roi-card">
+      <div class="roi-icon">✔</div>
+      <div>
+        <div class="roi-title">Drastically Reduce Lead Drop-Off via 1-Tap WhatsApp & Calling</div>
+        <div class="roi-desc">
+          Logistics managers rarely fill out long web forms while in transit. The persistent mobile action dock provides 1-tap WhatsApp consultation and instant phone dialing, routing high-intent buyers straight to your sales team before they bounce.
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI Item 3 -->
+    <div class="roi-card">
+      <div class="roi-icon">✔</div>
+      <div>
+        <div class="roi-title">Command Tier-1 Brand Authority with 3D Diagnostics & Spec Sheets</div>
+        <div class="roi-desc">
+          By displaying multi-angle structural chassis breakdowns, payload stress analysis, and official technical spec sheets for download, ForceIndia is immediately positioned as a precision engineering leader compared to unbranded regional fabricators.
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI Item 4 -->
+    <div class="roi-card">
+      <div class="roi-icon">✔</div>
+      <div>
+        <div class="roi-title">Sub-Second Mobile Load Speeds on 4G/5G Cellular Networks</div>
+        <div class="roi-desc">
+          Deployed on Vercel's global edge network with automated asset pre-compression, delivering instant load times across all Indian transport corridors with zero server crashes or local hosting maintenance overhead.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2 Footer -->
+  <div class="doc-footer">
+    <div>Ref: #PROP-2026-FI-001 • Project Proposal • ForceIndia Trailers</div>
+    <div>ASVEX Technologies • Page 2 of 3</div>
+  </div>
+</div>
+
+<!-- PAGE 3: DELIVERABLES, PAYMENT & SIGN-OFF -->
+<div class="page">
+  <div>
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">PROJECT PROPOSAL & SPECIFICATION (PAGE 3)</div>
+      </div>
+      <div class="doc-title-block">
+        <div class="doc-ref">Ref: #PROP-2026-FI-001</div>
+      </div>
+    </div>
+
+    <div class="section-h2">3. Scope of Deliverables & Cost Breakdown</div>
+    <div class="p-text" style="margin-bottom: 8px;">
+      The total fixed commercial investment for the complete ForceIndia Digital Growth Platform is structured as follows:
+    </div>
+
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th style="width: 78%;">Module / Scope Component</th>
+          <th class="tar" style="width: 22%;">Fee (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="scope-title">Full-Stack Multi-Page Web Platform & Mobile-First Fleet Showcase</div>
+            <div class="scope-desc">Mobile-first architecture across Home Hub, Flatbed, Skeletal, and Custom Fabrication hubs with sticky bottom action dock.</div>
+          </td>
+          <td class="tar">₹3,500</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="scope-title">Interactive 3D Engineering Diagnostics & Visual Breakdown Engine</div>
+            <div class="scope-desc">Chassis breakdown, payload stress visualizers, high-definition trailer video streaming, and configurator hooks.</div>
+          </td>
+          <td class="tar">₹2,500</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="scope-title">High-Performance Serverless Cloud Hosting & Edge CDN</div>
+            <div class="scope-desc">Vercel Global Edge Network deployment, automated GitHub CI/CD, SSL certificates, and 99.99% uptime guarantee.</div>
+          </td>
+          <td class="tar">₹2,000</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="scope-title">Lead Acquisition Architecture & WhatsApp Direct-Connect Integration</div>
+            <div class="scope-desc">1-tap WhatsApp consultation funnel, phone dialer integration, technical PDF spec sheet distribution engine.</div>
+          </td>
+          <td class="tar">₹1,000</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="scope-title">Full Code Ownership Handover, IP Rights & 30-Day Technical Warranty</div>
+            <div class="scope-desc">100% transfer of code repository ownership to the client, operational handover, and 30 days of warranty support.</div>
+          </td>
+          <td class="tar">₹1,000</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL PROJECT INVESTMENT:</td>
+          <td class="tar">₹10,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-h2">4. Milestone & Acceptance Sign-Off</div>
+    <div class="p-text" style="margin-bottom: 8px;">
+      <b>Milestone:</b> Full Delivery & Go-Live Handover (Complete platform live at <b>force-india.vercel.app</b>, Git repo active, 3D diagnostics verified).<br>
+      <b>Investment Amount:</b> ₹10,000 (Payment Due Upon Handover).
+    </div>
+
+    <div class="pay-instruction">
+      💵 <b>Payment Settlement:</b> Cash settlement upon in-person handover and administrative walkthrough is supported. Direct UPI transfers (<b>abhayrajs366@oksbi</b>) or NEFT/IMPS bank transfers are also accepted.
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures-grid">
+      <!-- Service Provider -->
+      <div class="sig-card">
+        <div class="sig-header">FOR ASVEX TECHNOLOGIES</div>
+        <div class="sig-name">Abhayraj Singh</div>
+        <div class="sig-role">Founder & Proprietor, ASVEX Technologies</div>
+        <div class="sig-date">Date: October 19, 2026</div>
+      </div>
+      <!-- Client -->
+      <div class="sig-card">
+        <div class="sig-header">FOR FORCEINDIA TRAILERS</div>
+        <div class="sig-name">Authorized Signatory</div>
+        <div class="sig-role">Director / Operations Lead, ForceIndia Trailers</div>
+        <div class="sig-date">Date: ________________________</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3 Footer -->
+  <div class="doc-footer">
+    <div>Ref: #PROP-2026-FI-001 • Project Proposal • ForceIndia Trailers</div>
+    <div>ASVEX Technologies • abhay@asvextech.com • +91 98924 69015 • Page 3 of 3</div>
+  </div>
+</div>
+
+</body>
+</html>

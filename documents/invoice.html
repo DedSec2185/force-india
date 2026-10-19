@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Master Invoice - #INV-2026-FI-001 - ASVEX Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    background: #ffffff;
+    font-size: 11.5px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    size: A4;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+  .page {
+    width: 100%;
+    min-height: 275mm;
+    position: relative;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 14px;
+  }
+  .brand-logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0f172a;
+  }
+  .brand-logo span {
+    color: #2563eb;
+  }
+  .brand-sub {
+    font-size: 9.5px;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 2px;
+    letter-spacing: 0.2px;
+  }
+  .invoice-title-block {
+    text-align: right;
+  }
+  .invoice-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .invoice-ref {
+    font-size: 10px;
+    font-weight: 700;
+    color: #475569;
+    margin-top: 2px;
+  }
+
+  /* Meta Strip */
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    gap: 10px;
+  }
+  .meta-col .label {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .meta-col .val {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .badge-due {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 9.5px;
+    font-weight: 700;
+  }
+
+  /* Two Column Cards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .card-header {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .card-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+  }
+  .card-detail {
+    font-size: 10px;
+    color: #475569;
+    line-height: 1.45;
+  }
+  .card-detail b {
+    color: #0f172a;
+    font-weight: 600;
+  }
+  .card-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Highlight Banner */
+  .highlight-banner {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #1e3a8a;
+  }
+  .highlight-banner b {
+    color: #1d4ed8;
+    font-weight: 700;
+  }
+
+  /* Section Heading */
+  .section-title {
+    font-size: 9.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #334155;
+    margin-bottom: 8px;
+  }
+
+  /* Table */
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+  }
+  .items-table th {
+    background: #f1f5f9;
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    text-align: left;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+    padding: 7px 10px;
+  }
+  .items-table th.tar, .items-table td.tar {
+    text-align: right;
+  }
+  .items-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  .item-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .item-desc {
+    font-size: 9.5px;
+    color: #64748b;
+    line-height: 1.4;
+  }
+  .item-price {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #0f172a;
+    white-space: nowrap;
+  }
+
+  /* Totals */
+  .totals-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+  }
+  .totals-box {
+    width: 260px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    padding: 10px 14px;
+  }
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #475569;
+    margin-bottom: 5px;
+  }
+  .totals-row.final {
+    border-top: 1.5px solid #cbd5e1;
+    padding-top: 6px;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #2563eb;
+  }
+
+  /* Payment Instructions (Page 2) */
+  .payment-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .payment-header {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #166534;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .payment-desc {
+    font-size: 9.5px;
+    color: #15803d;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+  .payment-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid #dcfce7;
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .pay-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 2px;
+  }
+  .pay-val {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .upi-tag {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+
+  /* Terms Box */
+  .terms-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: 9px;
+    color: #475569;
+    line-height: 1.45;
+  }
+  .terms-box b {
+    color: #0f172a;
+  }
+  .terms-box ul {
+    margin-left: 16px;
+    margin-top: 4px;
+  }
+  .terms-box li {
+    margin-bottom: 3px;
+  }
+
+  /* Signatures */
+  .signatures-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .sig-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 12px 14px;
+  }
+  .sig-header {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  .sig-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .sig-role {
+    font-size: 9.5px;
+    color: #64748b;
+    margin-bottom: 8px;
+  }
+  .sig-date {
+    font-size: 9.5px;
+    color: #475569;
+  }
+
+  /* Footer */
+  .doc-footer {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8.5px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: INVOICE MAIN & SCOPE -->
+<div class="page">
+  <div>
+    <!-- Top Header -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">Software Development • Cloud Infrastructure • Digital Growth</div>
+      </div>
+      <div class="invoice-title-block">
+        <div class="invoice-title">Master Invoice</div>
+        <div class="invoice-ref">#INV-2026-FI-001</div>
+      </div>
+    </div>
+
+    <!-- Meta Strip -->
+    <div class="meta-strip">
+      <div class="meta-col">
+        <div class="label">Invoice Date</div>
+        <div class="val">October 19, 2026</div>
+      </div>
+      <div class="meta-col">
+        <div class="label">Due Date</div>
+        <div class="val">Upon Receipt / Sign-Off</div>
+      </div>
+      <div class="meta-col">
+        <div class="label">Project</div>
+        <div class="val">ForceIndia Platform & Vercel Cloud</div>
+      </div>
+      <div class="meta-col">
+        <div class="label">Payment Status</div>
+        <div class="val"><span class="badge-due">Payment Due</span></div>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid">
+      <!-- Bill From -->
+      <div class="card">
+        <div class="card-header">🏛 BILL FROM (SERVICE PROVIDER)</div>
+        <div class="card-name">Abhayraj Singh</div>
+        <div class="card-detail">
+          <b>ASVEX Technologies</b> (Sole Proprietorship)<br>
+          Email: abhay@asvextech.com<br>
+          Phone: +91 98924 69015<br>
+          Location: Mumbai, Maharashtra, India
+        </div>
+      </div>
+      <!-- Bill To -->
+      <div class="card">
+        <div class="card-header">🏢 BILL TO (CLIENT)</div>
+        <div class="card-name">ForceIndia Trailers</div>
+        <div class="card-detail">
+          <b>Attention:</b> Management & Operations Director<br>
+          <b>Domain / Staging:</b> <a class="card-link" href="https://force-india.vercel.app" target="_blank">force-india.vercel.app</a><br>
+          <b>Repository:</b> <a class="card-link" href="https://github.com/DedSec2185/force-india" target="_blank">github.com/DedSec2185/force-india</a><br>
+          <b>Location:</b> Maharashtra, India
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlight Banner -->
+    <div class="highlight-banner">
+      <b>Institutional Modernization & Digital Fleet Platform:</b> This delivery provides ForceIndia Trailers with an enterprise-grade digital fleet acquisition platform. Deployed on Vercel's global edge network with automated SSL encryption, the platform features a mobile-first transport hub, dedicated 3D chassis diagnostics, downloadable technical engineering sheets, 1-tap WhatsApp consultation funnel, and complete Git source code ownership.
+    </div>
+
+    <!-- Scope Table -->
+    <div class="section-title">Itemization of Scope & Deliverables</div>
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th style="width: 78%;">Deliverable / Module Description</th>
+          <th class="tar" style="width: 22%;">Amount (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="item-title">1. Full-Stack Multi-Page Web Platform & Mobile-First Fleet Showcase</div>
+            <div class="item-desc">
+              Custom responsive engineering across 4 dedicated hubs: Mobile-First Home Hub, Flatbed Semi-Trailer Showcase, Skeletal Container Chassis Hub, and Custom Fabrication quotation portal. Includes sticky bottom quick-action bar (Call Sales, WhatsApp, Instant Quote) optimized for logistics fleet owners.
+            </div>
+          </td>
+          <td class="tar item-price">₹3,500</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">2. Interactive 3D Engineering Diagnostics & Visual Breakdown Engine</div>
+            <div class="item-desc">
+              Multi-angle structural chassis breakdown, payload stress points, high-definition trailer video streaming pipeline, and interactive configurator hooks for real-time quotation requests.
+            </div>
+          </td>
+          <td class="tar item-price">₹2,500</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">3. High-Performance Serverless Cloud Infrastructure & Edge CDN</div>
+            <div class="item-desc">
+              High-availability deployment on Vercel's Global Edge Network. Sub-50ms latency across India, automated GitHub CI/CD continuous deployment pipeline, responsive asset compression engine, DDoS protection, and 99.99% uptime with zero ongoing local server maintenance.
+            </div>
+          </td>
+          <td class="tar item-price">₹2,000</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">4. Lead Acquisition Architecture & WhatsApp Direct-Connect Integration</div>
+            <div class="item-desc">
+              1-tap WhatsApp consultation funnel, direct phone dialer integration, technical PDF spec sheet distribution engine (SAMPLE FLATBED PAGE 1.pdf), and friction-free inquiry conversion pathways.
+            </div>
+          </td>
+          <td class="tar item-price">₹1,000</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-title">5. Full Code Ownership Handover, IP Rights & 30-Day Technical Warranty</div>
+            <div class="item-desc">
+              100% transfer of source code, intellectual property, and GitHub repository ownership to the client. Full operational handover and 30 days of complimentary post-launch technical warranty covering defect resolution, content adjustments, and administrator support.
+            </div>
+          </td>
+          <td class="tar item-price">₹1,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Totals -->
+    <div class="totals-wrap">
+      <div class="totals-box">
+        <div class="totals-row">
+          <span>Total Contract Value:</span>
+          <b>₹10,000</b>
+        </div>
+        <div class="totals-row">
+          <span>Advance / Prior Credits:</span>
+          <b>₹0</b>
+        </div>
+        <div class="totals-row final">
+          <span>TOTAL DUE (INR):</span>
+          <span>₹10,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 1 Footer -->
+  <div class="doc-footer">
+    <div>Ref: #INV-2026-FI-001 • ForceIndia Commercial Vehicles & Trailers</div>
+    <div>ASVEX Technologies • abhay@asvextech.com • Page 1 of 2</div>
+  </div>
+</div>
+
+<!-- PAGE 2: PAYMENT INSTRUCTIONS, TERMS & SIGN-OFF -->
+<div class="page">
+  <div>
+    <!-- Compact Top Bar -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">Software Development • Cloud Infrastructure • Digital Growth</div>
+      </div>
+      <div class="invoice-title-block">
+        <div class="invoice-title" style="font-size: 15px;">Payment & Settlement</div>
+        <div class="invoice-ref">#INV-2026-FI-001 (Page 2)</div>
+      </div>
+    </div>
+
+    <!-- Payment Box -->
+    <div class="payment-box">
+      <div class="payment-header">💵 Preferred Settlement Mode: Cash Payment (In-Person Handover) or UPI</div>
+      <div class="payment-desc">
+        Cash settlement is supported upon in-person handover and administrative sign-off. Direct UPI or instant electronic bank transfer (NEFT / IMPS) is also accepted to the verified accounts below:
+      </div>
+      <div class="payment-details-grid">
+        <div>
+          <div class="pay-label">Payee Name</div>
+          <div class="pay-val">Abhayraj Singh</div>
+          <div style="font-size: 9.5px; color: #64748b; margin-top: 2px;">Founder & Proprietor, ASVEX Technologies</div>
+        </div>
+        <div>
+          <div class="pay-label">UPI ID (Google Pay / PhonePe / Paytm / BHIM)</div>
+          <div style="margin-top: 2px;"><span class="upi-tag">abhayrajs366@oksbi</span></div>
+          <div style="font-size: 9px; color: #64748b; margin-top: 2px;">Mobile Linked: +91 98924 69015</div>
+        </div>
+      </div>
+      <div style="font-size: 9px; color: #166534; margin-top: 8px;">
+        * For digital remittances, please share the confirmation screenshot via WhatsApp to <b>+91 98924 69015</b>.
+      </div>
+    </div>
+
+    <!-- Commercial Terms & Notes -->
+    <div class="section-title">Terms of Service & Delivery Notes</div>
+    <div class="terms-box">
+      <ul>
+        <li><b>Cloud Infrastructure & Deployment:</b> The live platform has been compiled, checked, and hosted on Vercel's Edge CDN at <a href="https://force-india.vercel.app" style="color: #2563eb; text-decoration: none;">force-india.vercel.app</a> with zero ongoing server maintenance overhead.</li>
+        <li><b>Code & Asset Transfer:</b> Complete access and ownership rights to the Git repository (<a href="https://github.com/DedSec2185/force-india" style="color: #2563eb; text-decoration: none;">github.com/DedSec2185/force-india</a>) and all media assets are transferred upon payment settlement.</li>
+        <li><b>30-Day Post-Launch Warranty:</b> Includes 30 calendar days of technical support for bug resolution, minor copy updates, phone/WhatsApp number adjustments, and custom domain linking assistance.</li>
+        <li><b>Custom Domain Integration:</b> Once the client's official domain registrar access is provided, DNS A/CNAME records will be connected to point the custom domain directly to this Vercel edge deployment at no extra charge.</li>
+      </ul>
+    </div>
+
+    <!-- Sign-off Section -->
+    <div class="section-title">Administrative Acceptance & Signatures</div>
+    <div class="signatures-grid">
+      <!-- ASVEX -->
+      <div class="sig-card">
+        <div class="sig-header">FOR SERVICE PROVIDER (ASVEX TECHNOLOGIES)</div>
+        <div class="sig-name">Abhayraj Singh</div>
+        <div class="sig-role">Founder & Proprietor, ASVEX Technologies</div>
+        <div class="sig-date">Date: October 19, 2026</div>
+      </div>
+      <!-- ForceIndia -->
+      <div class="sig-card">
+        <div class="sig-header">FOR CLIENT (FORCEINDIA TRAILERS)</div>
+        <div class="sig-name">Authorized Signatory</div>
+        <div class="sig-role">Managing Director / Operations Lead</div>
+        <div class="sig-date">Date: ________________________</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2 Footer -->
+  <div class="doc-footer">
+    <div>Ref: #INV-2026-FI-001 • ForceIndia Commercial Vehicles & Trailers</div>
+    <div>ASVEX Technologies • abhay@asvextech.com • +91 98924 69015 • Page 2 of 2</div>
+  </div>
+</div>
+
+</body>
+</html>

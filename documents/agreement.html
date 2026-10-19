@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Master Service Agreement - #MSA-2026-FI-001 - ASVEX Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    background: #ffffff;
+    font-size: 11px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    size: A4;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+  .page {
+    width: 100%;
+    min-height: 275mm;
+    position: relative;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 12px;
+  }
+  .brand-logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0f172a;
+  }
+  .brand-logo span {
+    color: #2563eb;
+  }
+  .brand-sub {
+    font-size: 9px;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 2px;
+    letter-spacing: 0.2px;
+  }
+  .doc-title-block {
+    text-align: right;
+  }
+  .official-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .doc-ref {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 3px;
+  }
+
+  /* Agreement Main Title */
+  .agreement-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.3px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+  .agreement-sub {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 12px;
+  }
+
+  /* Parties Grid */
+  .parties-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .party-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .party-header {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .party-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .party-detail {
+    font-size: 9.5px;
+    color: #475569;
+    line-height: 1.4;
+  }
+  .party-detail b {
+    color: #0f172a;
+  }
+  .party-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Preamble */
+  .preamble-box {
+    background: #ffffff;
+    border-left: 3px solid #2563eb;
+    padding: 8px 12px;
+    margin-bottom: 14px;
+    font-size: 10px;
+    line-height: 1.45;
+    color: #334155;
+    background: #f8fafc;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Section Titles */
+  .section-h2 {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Module Card */
+  .module-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 7px;
+  }
+  .module-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .module-desc {
+    font-size: 9.5px;
+    color: #475569;
+    line-height: 1.4;
+  }
+
+  /* Text blocks & bullet points */
+  .content-text {
+    font-size: 10px;
+    color: #334155;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .content-list {
+    margin-left: 16px;
+    margin-bottom: 8px;
+    font-size: 9.5px;
+    color: #334155;
+    line-height: 1.45;
+  }
+  .content-list li {
+    margin-bottom: 3px;
+  }
+  .content-list b {
+    color: #0f172a;
+  }
+
+  /* Schedule Table */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+  .schedule-table th {
+    background: #f1f5f9;
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    text-align: left;
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    padding: 6px 8px;
+  }
+  .schedule-table td {
+    padding: 7px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 9.5px;
+    vertical-align: middle;
+  }
+  .schedule-table th.tar, .schedule-table td.tar {
+    text-align: right;
+  }
+  .badge-pending {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 8.5px;
+    font-weight: 700;
+  }
+
+  /* Signatures */
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .sig-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    padding: 12px 14px;
+  }
+  .sig-role-header {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 24px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  .sig-person {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .sig-title {
+    font-size: 9px;
+    color: #64748b;
+    margin-bottom: 6px;
+  }
+  .sig-line {
+    font-size: 9.5px;
+    color: #475569;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: PREAMBLE & SCOPE (MODULES 1-3) -->
+<div class="page">
+  <div>
+    <!-- Top Header -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">MASTER SOFTWARE SERVICE AGREEMENT</div>
+      </div>
+      <div class="doc-title-block">
+        <div class="official-badge">OFFICIAL MASTER AGREEMENT</div>
+        <div class="doc-ref">Effective Date: October 19, 2026<br>Ref: #MSA-2026-FI-001</div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="agreement-title">Master Service Agreement</div>
+    <div class="agreement-sub">Heavy Commercial Vehicle Digital Platform, Cloud Infrastructure & Fleet Lead Acquisition Agreement</div>
+
+    <!-- Parties Grid -->
+    <div class="parties-grid">
+      <!-- Service Provider -->
+      <div class="party-card">
+        <div class="party-header">SERVICE PROVIDER</div>
+        <div class="party-name">ASVEX Technologies (Sole Proprietorship)</div>
+        <div class="party-detail">
+          Proprietor: <b>Abhayraj Singh</b><br>
+          Email: abhay@asvextech.com • Phone: +91 98924 69015<br>
+          Location: Mumbai, Maharashtra, India
+        </div>
+      </div>
+      <!-- Client -->
+      <div class="party-card">
+        <div class="party-header">CLIENT</div>
+        <div class="party-name">ForceIndia Trailers</div>
+        <div class="party-detail">
+          Attention: <b>Management & Operations Lead</b><br>
+          Live Staging: <a class="party-link" href="https://force-india.vercel.app" target="_blank">force-india.vercel.app</a><br>
+          Codebase: <a class="party-link" href="https://github.com/DedSec2185/force-india" target="_blank">github.com/DedSec2185/force-india</a><br>
+          Location: Maharashtra, India
+        </div>
+      </div>
+    </div>
+
+    <!-- Preamble -->
+    <div class="preamble-box">
+      This Master Service Agreement ("Agreement") is entered into between <b>ASVEX Technologies</b> ("Service Provider") and <b>ForceIndia Trailers</b> ("Client"). The Service Provider has engineered, deployed, and configured the custom cloud-based commercial vehicle platform at <b>force-india.vercel.app</b> to provide enterprise-grade digital fleet showcases, 3D chassis diagnostics, downloadable technical engineering specifications, and friction-free mobile lead acquisition.
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section-h2">1. Scope of Work & System Deliverables</div>
+    <div class="content-text">
+      The Service Provider has engineered and successfully deployed a full-stack, mobile-first cloud web platform comprising the following core modules:
+    </div>
+
+    <!-- Module 1 -->
+    <div class="module-card">
+      <div class="module-title">Module 1 — Mobile-First Transport Architecture & Multi-Product Fleet Showcase</div>
+      <div class="module-desc">
+        Complete responsive web architecture engineered across 4 dedicated hubs: Mobile-First Home Hub, Flatbed Semi-Trailer Showcase, Skeletal Container Chassis Hub, and Custom Fabrication quotation portal. Engineered with a persistent bottom quick-action bar (Direct Call, WhatsApp Consultation, Instant Quote) designed for mobile logistics operators.
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module-card">
+      <div class="module-title">Module 2 — Interactive 3D Chassis Diagnostics & Visual Engineering Breakdown</div>
+      <div class="module-desc">
+        Multi-angle structural chassis breakdown, payload stress points, high-definition trailer video streaming pipeline, and interactive configurator hooks for real-time quotation requests.
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="module-card">
+      <div class="module-title">Module 3 — High-Performance Serverless Cloud Infrastructure & Edge CDN</div>
+      <div class="module-desc">
+        Serverless edge deployment on Vercel's global infrastructure with automated GitHub CI/CD continuous deployment pipeline, sub-50ms TTFB latency across India, DDoS security, 256-bit automated SSL encryption, and 99.99% high-availability uptime.
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 1 Footer -->
+  <div class="footer">
+    <div>Ref: #MSA-2026-FI-001 • Master Service Agreement • ForceIndia Trailers</div>
+    <div>ASVEX Technologies • Page 1 of 3</div>
+  </div>
+</div>
+
+<!-- PAGE 2: MODULES 4-5, INFRASTRUCTURE, COMMERCIAL TERMS, IP OWNERSHIP -->
+<div class="page">
+  <div>
+    <!-- Compact Top Bar -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">MASTER SERVICE AGREEMENT (PAGE 2)</div>
+      </div>
+      <div class="doc-title-block">
+        <div class="doc-ref">Ref: #MSA-2026-FI-001</div>
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module-card">
+      <div class="module-title">Module 4 — Lead Acquisition Architecture & WhatsApp Direct-Connect Integration</div>
+      <div class="module-desc">
+        1-tap WhatsApp consultation funnel, direct phone dialer integration, technical PDF spec sheet distribution engine (SAMPLE FLATBED PAGE 1.pdf), and friction-free inquiry conversion pathways.
+      </div>
+    </div>
+
+    <!-- Module 5 -->
+    <div class="module-card">
+      <div class="module-title">Module 5 — Full Code Ownership Handover, IP Rights & 30-Day Technical Warranty</div>
+      <div class="module-desc">
+        100% transfer of source code, intellectual property, and GitHub repository ownership to the client. Full operational handover and 30 days of complimentary post-launch technical warranty covering defect resolution, content adjustments, and administrator support.
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section-h2">2. Technical Infrastructure & 24/7 Cloud Hosting</div>
+    <div class="content-text">
+      The platform is deployed on modern cloud infrastructure ensuring high availability and zero ongoing local maintenance overhead:
+    </div>
+    <ul class="content-list">
+      <li><b>Hosting Platform:</b> High-performance serverless cloud edge infrastructure on Vercel with automated SSL/TLS (HTTPS) encryption certificates.</li>
+      <li><b>Domain & DNS Integration:</b> Ready for immediate mapping to Client's custom domain (e.g., forceindiatrailers.com) via DNS A and CNAME record linking at no additional cost.</li>
+      <li><b>Universal Device Accessibility:</b> Accessible 24/7 across smartphones, tablets, laptops, and desktop computers worldwide with sub-second response times.</li>
+    </ul>
+
+    <!-- Section 3 -->
+    <div class="section-h2">3. Commercial Terms & Payment Schedule</div>
+    <div class="content-text">
+      The agreed total fixed contract fee for the complete ForceIndia Trailers Digital Platform and cloud delivery is <b>₹10,000 (Rupees Ten Thousand Only)</b>. Payment settlement in cash is supported upon in-person handover and administrative sign-off; direct UPI or electronic bank transfer (NEFT/IMPS) to Service Provider's verified account (<b>abhayrajs366@oksbi</b>) is also accepted.
+    </div>
+
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th style="width: 55%;">Deliverable / Milestone Trigger</th>
+          <th class="tar" style="width: 20%;">Amount (₹)</th>
+          <th class="tar" style="width: 25%;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <b>Complete System Delivery & Live Cloud Handover</b><br>
+            <span style="font-size: 8.5px; color: #64748b;">Full multi-page platform live at force-india.vercel.app, Git repo active, 3D diagnostics live, and lead capture systems verified.</span>
+          </td>
+          <td class="tar"><b>₹10,000</b></td>
+          <td class="tar"><span class="badge-pending">Payment Due Upon Handover</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 4 -->
+    <div class="section-h2">4. Intellectual Property & Code Ownership</div>
+    <div class="content-text">
+      Upon receipt of the full contract fee (<b>₹10,000</b>), all custom software code, web page designs, graphics, content layouts, and configuration files specifically created for the ForceIndia Trailers platform shall be fully transferred to the Client. Pre-existing frameworks and tools developed by ASVEX Technologies remain licensed to the Client on a non-exclusive, perpetual basis for internal institutional use.
+    </div>
+  </div>
+
+  <!-- Page 2 Footer -->
+  <div class="footer">
+    <div>Ref: #MSA-2026-FI-001 • Master Service Agreement • ForceIndia Trailers</div>
+    <div>ASVEX Technologies • Page 2 of 3</div>
+  </div>
+</div>
+
+<!-- PAGE 3: CONFIDENTIALITY, WARRANTY, GOVERNING LAW, SIGNATURES -->
+<div class="page">
+  <div>
+    <!-- Compact Top Bar -->
+    <div class="header">
+      <div>
+        <div class="brand-logo">ASVEX <span>TECHNOLOGIES</span></div>
+        <div class="brand-sub">MASTER SERVICE AGREEMENT (PAGE 3)</div>
+      </div>
+      <div class="doc-title-block">
+        <div class="doc-ref">Ref: #MSA-2026-FI-001</div>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section-h2">5. Confidentiality & Data Privacy</div>
+    <div class="content-text">
+      Both parties agree to treat all commercial designs, proprietary trailer specifications, pricing tiers, and customer inquiries as strictly confidential. ASVEX Technologies will not share, disclose, or distribute any Client records or commercial data to any third party without explicit written consent.
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section-h2">6. Warranty & Complimentary Post-Launch Support</div>
+    <div class="content-text">
+      The Service Provider provides <b>30 days of complimentary post-launch technical support</b> from the effective date of this agreement. This includes resolving software defects, assisting office staff during onboarding, updating phone numbers or WhatsApp links, and performing minor text or photo adjustments. Ongoing feature expansions or server maintenance beyond 30 days are available under optional support agreements.
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section-h2">7. Governing Law & Jurisdiction</div>
+    <div class="content-text">
+      This Agreement is governed by the laws of India. Any disputes arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of the competent courts in <b>Mumbai, Maharashtra, India</b>.
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section-h2">8. Acceptance & Signatures</div>
+    <div class="content-text">
+      IN WITNESS WHEREOF, the authorized representatives of both parties execute this Master Service Agreement as of the Effective Date.
+    </div>
+
+    <div class="sig-grid">
+      <!-- Service Provider -->
+      <div class="sig-box">
+        <div class="sig-role-header">FOR SERVICE PROVIDER (ASVEX TECHNOLOGIES)</div>
+        <div class="sig-person">Abhayraj Singh</div>
+        <div class="sig-title">Founder & Proprietor, ASVEX Technologies</div>
+        <div class="sig-line">Date: October 19, 2026</div>
+      </div>
+      <!-- Client -->
+      <div class="sig-box">
+        <div class="sig-role-header">FOR CLIENT (FORCEINDIA TRAILERS)</div>
+        <div class="sig-person">Authorized Signatory</div>
+        <div class="sig-title">Director / Operations Lead, ForceIndia Trailers</div>
+        <div class="sig-line">Date: ________________________</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3 Footer -->
+  <div class="footer">
+    <div>Ref: #MSA-2026-FI-001 • Master Service Agreement • ForceIndia Trailers</div>
+    <div>ASVEX Technologies • abhay@asvextech.com • +91 98924 69015 • Page 3 of 3</div>
+  </div>
+</div>
+
+</body>
+</html>

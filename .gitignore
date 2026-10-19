@@ -1,0 +1,9 @@
+# Loose duplicate video files in root (actual assets reside in assets/videos/)
+/*.mp4
+
+# OS and Editor temporary files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
